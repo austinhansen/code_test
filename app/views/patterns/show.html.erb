@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Minor x:</strong>
+  <%= @pattern.minor_x %>
+</p>
+
+<p>
+  <strong>Major x:</strong>
+  <%= @pattern.major_x %>
+</p>
+
+<p>
+  <strong>Minor y:</strong>
+  <%= @pattern.minor_y %>
+</p>
+
+<p>
+  <strong>Major y:</strong>
+  <%= @pattern.major_y %>
+</p>
+
+<%= link_to 'Edit', edit_pattern_path(@pattern) %> |
+<%= link_to 'Back', patterns_path %>
