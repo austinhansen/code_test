@@ -12,8 +12,6 @@ class GridGenerator
     @grid
   end
 
-  private
-
   def generate_lines
     @row = 0
     @major_y.times do
