@@ -1,3 +1,17 @@
 // Place all the styles related to the Patterns controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+p {
+  font-size: 24px;
+  letter-spacing: 20px;
+}
+
+.simple_form label {
+  width: 100px;
+  margin: 2px -10px;
+}
+
+.btn-lg {
+  margin: 2px 10px;
+}
