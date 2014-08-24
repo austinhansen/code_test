@@ -11,6 +11,6 @@ class Pattern < ActiveRecord::Base
 
   def create_grid
     generator = GridGenerator.new(self.minor_x, self.major_x, self.minor_y, self.major_y)
-    self.grid = generator.grid
+    self.grid = generator.generate
   end
 end

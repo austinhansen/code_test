@@ -6,7 +6,7 @@ class GridGenerator
     @major_y = major_y
   end
 
-  def grid
+  def generate
     @grid = []
     generate_lines
     @grid
