@@ -16,7 +16,7 @@ class GridGenerator
 
   def generate_lines
     @row = 0
-    while @row < @major_y
+    @major_y.times do
       @minor_y.times do
         add_line_to_grid
       end
@@ -33,21 +33,21 @@ class GridGenerator
   end
 
   def create_line
-    i = 0
+    @section = 0
     @unit = ""
-    while i < @major_x
-      add_unit(i)
-      i += 1
+    @major_x.times do
+      add_unit
+      @section += 1
     end
     @unit
   end
 
-  def add_unit(i)
-    if i.even? && @row.odd? && @major_x.odd?
+  def add_unit
+    if @section.even? && @row.odd? && @major_x.odd?
       character = "O"
-    elsif i.odd? && @row.odd? && @major_x.odd?
+    elsif @section.odd? && @row.odd? && @major_x.odd?
       character = "X"
-    elsif i.even?
+    elsif @section.even?
       character = "X"
     else
       character = "O"
