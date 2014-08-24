@@ -33,21 +33,21 @@ class GridGenerator
   end
 
   def create_line(row)
-    @section = 0
+    section = 0
     @unit = ""
     @major_x.times do
-      add_unit(row)
-      @section += 1
+      add_unit(row, section)
+      section += 1
     end
     @unit
   end
 
-  def add_unit(row)
-    if @section.even? && row.odd? && @major_x.odd?
+  def add_unit(row, section)
+    if section.even? && row.odd? && @major_x.odd?
       character = "O"
-    elsif @section.odd? && row.odd? && @major_x.odd?
+    elsif section.odd? && row.odd? && @major_x.odd?
       character = "X"
-    elsif @section.even?
+    elsif section.even?
       character = "X"
     else
       character = "O"
