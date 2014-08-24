@@ -1,4 +1,6 @@
 class GridGenerator
+  attr_accessor :grid
+
   def initialize(minor_x, major_x, minor_y, major_y)
     @minor_x = minor_x
     @major_x = major_x
@@ -13,37 +15,37 @@ class GridGenerator
   end
 
   def generate_lines
-    @row = 0
+    row = 0
     @major_y.times do
       @minor_y.times do
-        add_line_to_grid
+        add_line_to_grid(row)
       end
-      @row += 1
+      row += 1
     end
   end
 
-  def add_line_to_grid
-    if @row.even?
-      @grid << create_line
+  def add_line_to_grid(row)
+    if row.even?
+      @grid << create_line(row)
     else
-      @grid << create_line.reverse
+      @grid << create_line(row).reverse
     end
   end
 
-  def create_line
+  def create_line(row)
     @section = 0
     @unit = ""
     @major_x.times do
-      add_unit
+      add_unit(row)
       @section += 1
     end
     @unit
   end
 
-  def add_unit
-    if @section.even? && @row.odd? && @major_x.odd?
+  def add_unit(row)
+    if @section.even? && row.odd? && @major_x.odd?
       character = "O"
-    elsif @section.odd? && @row.odd? && @major_x.odd?
+    elsif @section.odd? && row.odd? && @major_x.odd?
       character = "X"
     elsif @section.even?
       character = "X"
