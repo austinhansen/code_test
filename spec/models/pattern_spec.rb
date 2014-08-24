@@ -11,7 +11,12 @@ describe Pattern, :type => :model do
   end
 
   it 'should generate a grid string from x and y values' do
-    pattern = create(:pattern, minor_x: 4, major_x: 3, minor_y: 4, major_y: 5)
-    expect(pattern.grid).to be_a(String)
+    pattern = create(:pattern, minor_x: 4, major_x: 4, minor_y: 4, major_y: 5)
+    expect(pattern.grid).to be_a(Array)
+  end
+
+  it 'should have an alternative pattern when major_x is odd' do
+    pattern = create(:pattern, minor_x: 4, major_x: 3, minor_y: 1, major_y: 5)
+    expect(pattern.grid[0]).not_to eq(pattern.grid[1])
   end
 end

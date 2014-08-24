@@ -8,26 +8,26 @@ class Pattern < ActiveRecord::Base
   private
 
   def create_grid
-    @grid = ""
+    @grid = []
     generate_lines
-    self.grid = @grid.chop
+    self.grid = @grid.each {|x| puts x}
   end
 
   def generate_lines
-    i = 0
-    while i < major_y
+    @row = 0
+    while @row < major_y
       minor_y.times do
-        add_line_to_grid(i)
+        add_line_to_grid
       end
-      i += 1
+      @row += 1
     end
   end
 
-  def add_line_to_grid(i)
-    if i.odd?
-      @grid << create_line + "\n"
+  def add_line_to_grid
+    if @row.even?
+      @grid << create_line
     else
-      @grid << create_line.reverse + "\n"
+      @grid << create_line.reverse
     end
   end
 
@@ -42,7 +42,11 @@ class Pattern < ActiveRecord::Base
   end
 
   def add_unit(i)
-    if i.even?
+    if i.even? && @row.odd? && major_x.odd?
+      character = "O"
+    elsif i.odd? && @row.odd? && major_x.odd?
+      character = "X"
+    elsif i.even?
       character = "X"
     else
       character = "O"

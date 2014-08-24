@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140823185717) do
     t.integer  "major_x"
     t.integer  "minor_y"
     t.integer  "major_y"
-    t.text     "grid"
+    t.string   "grid",       default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
