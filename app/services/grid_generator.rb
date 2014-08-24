@@ -1,31 +1,31 @@
-class PatternGenerator
+class GridGenerator
   def initialize(minor_x, major_x, minor_y, major_y)
     @minor_x = minor_x
     @major_x = major_x
     @minor_y = minor_y
     @major_y = major_y
-    create_pattern
+  end
+
+  def grid
+    @grid = []
+    generate_lines
+    @grid
   end
 
   private
-  def create_pattern
-    @grid = []
-    create_grid
-    @grid.each {|x| puts x}
-  end
 
-  def create_grid
-    i = 0
-    while i < @major_y
+  def generate_lines
+    @row = 0
+    while @row < @major_y
       @minor_y.times do
-        add_line_to_grid(i)
+        add_line_to_grid
       end
-      i += 1
+      @row += 1
     end
   end
 
-  def add_line_to_grid(i)
-    if i.odd?
+  def add_line_to_grid
+    if @row.even?
       @grid << create_line
     else
       @grid << create_line.reverse
@@ -43,7 +43,11 @@ class PatternGenerator
   end
 
   def add_unit(i)
-    if i.even?
+    if i.even? && @row.odd? && @major_x.odd?
+      character = "O"
+    elsif i.odd? && @row.odd? && @major_x.odd?
+      character = "X"
+    elsif i.even?
       character = "X"
     else
       character = "O"
@@ -51,5 +55,3 @@ class PatternGenerator
     @unit += (character * @minor_x)
   end
 end
-
-hello = PatternGenerator.new(3, 4, 2, 5)
