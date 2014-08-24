@@ -4,7 +4,7 @@ class PatternsController < ApplicationController
   # GET /patterns
   # GET /patterns.json
   def index
-    @patterns = Pattern.all
+    @pattern = Pattern.new
   end
 
   # GET /patterns/1
@@ -17,12 +17,6 @@ class PatternsController < ApplicationController
     @pattern = Pattern.new
   end
 
-  # GET /patterns/1/edit
-  def edit
-  end
-
-  # POST /patterns
-  # POST /patterns.json
   def create
     @pattern = Pattern.new(pattern_params)
 
